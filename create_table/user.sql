@@ -6,7 +6,6 @@ CREATE TABLE IF NOT EXISTS `easytrainer`.`user` (
   `birthday` DATE NULL,
   `weight` DECIMAL(5,2) NULL,
   `height` DECIMAL(4,2) NULL,
-  `age` TINYINT NULL,
   `gender` ENUM("M", "F", "O") NULL,
   `password` BINARY(32) NOT NULL,
   `level_id` INT NOT NULL,

@@ -118,14 +118,14 @@
 - hashtag *string*
 
 ### Relationships
-- hashtags (n) -> workout (n)
+- hashtag (n) -> workout (n)
 - hashtag (n) -> routine (n)
 - hashtag (n) -> exercises (n)
 
 ### Triggers
-- trg_log_ai_hashtags *after input*
-- trg_log_au_hashtags *after updated*
-- trg_log_ad_hashtags *after delete*
+- trg_log_ai_hashtag *after input*
+- trg_log_au_hashtag *after updated*
+- trg_log_ad_hashtag *after delete*
 
 ---
 ## workout 
@@ -191,7 +191,6 @@
 - sets *int*  
 - rest_time *time*  
 - duration *time*  
-  **classification**   
 - body_part *string*  
 - video_url *string*  
 - image_url *string*  

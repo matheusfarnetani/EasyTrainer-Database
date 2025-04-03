@@ -9,7 +9,7 @@
 - user_has_goal (n) -> goal (n)
 
 ### Triggers
-* trg_log_ai_user_has_goal *after input*
+- trg_log_ai_user_has_goal *after input*
 - trg_log_ad_user_has_goal *after delete*
 
 ---
@@ -51,7 +51,7 @@
 - workout_has_goal (n) -> goal (n)
 
 ### Triggers
-* trg_log_ai_workout_has_goal *after input*
+- trg_log_ai_workout_has_goal *after input*
 - trg_log_ad_workout_has_goal *after delete*
 
 ---
@@ -65,7 +65,7 @@
 - workout_has_hashtag (n) -> hashtag (n)
 
 ### Triggers
-* trg_log_ai_workout_has_hashtag *after input*
+- trg_log_ai_workout_has_hashtag *after input*
 - trg_log_ad_workout_has_hashtag *after delete*
 
 ---
@@ -79,7 +79,7 @@
 - workout_has_user (n) -> user (n)
 
 ### Triggers
-* trg_log_ai_workout_has_user *after input*
+- trg_log_ai_workout_has_user *after input*
 - trg_log_ad_workout_has_user *after delete*
 
 ---
@@ -93,7 +93,7 @@
 - workout_has_routine (n) -> routine (n)
 
 ### Triggers
-* trg_log_ai_workout_has_routine *after input*
+- trg_log_ai_workout_has_routine *after input*
 - trg_log_ad_workout_has_routine *after delete*
 
 ---
@@ -107,7 +107,7 @@
 - workout_has_exercise (n) -> exercise (n)
 
 ### Triggers
-* trg_log_ai_workout_has_exercise *after input*
+- trg_log_ai_workout_has_exercise *after input*
 - trg_log_ad_workout_has_exercise *after delete*
 
 ---
@@ -121,7 +121,7 @@
 - routine_has_type (n) -> type (n)
 
 ### Triggers
-* trg_log_ai_routine_has_type *after input*
+- trg_log_ai_routine_has_type *after input*
 - trg_log_ad_routine_has_type *after delete*
 
 ---
@@ -200,7 +200,7 @@
 - exercise_has_type (n) -> type (n)
 
 ### Triggers
-* trg_log_ai_exercise_has_type *after input*
+- trg_log_ai_exercise_has_type *after input*
 - trg_log_ad_exercise_has_type *after delete*
 
 ---
@@ -214,7 +214,7 @@
 - exercise_has_modality (n) -> modality (n)
 
 ### Triggers
-* trg_log_ai_exercise_has_modality *after input*
+- trg_log_ai_exercise_has_modality *after input*
 - trg_log_ad_exercise_has_modality *after delete*
 
 ---
@@ -228,7 +228,7 @@
 - exercise_has_goal (n) -> goal (n)
 
 ### Triggers
-* trg_log_ai_exercise_has_goal *after input*
+- trg_log_ai_exercise_has_goal *after input*
 - trg_log_ad_exercise_has_goal *after delete*
 
 ---
@@ -242,7 +242,7 @@
 - exercise_has_hashtag (n) -> hashtag (n)
 
 ### Triggers
-* trg_log_ai_exercise_has_hashtag *after input*
+- trg_log_ai_exercise_has_hashtag *after input*
 - trg_log_ad_exercise_has_hashtag *after delete*
 
 ---
@@ -256,7 +256,7 @@
 - exercise_has_variation (n) -> exercise (n)
 
 ### Triggers
-* trg_log_ai_exercise_has_variation *after input*
+- trg_log_ai_exercise_has_variation *after input*
 - trg_log_ad_exercise_has_variation *after delete*
 
 ---
