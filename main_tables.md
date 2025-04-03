@@ -7,7 +7,6 @@
 - birthday *date*  
 - weight *float*  
 - height *float*  
-- age *int*  
 - gender *char*  
 - password *bits*
 - level_id *int*
@@ -30,8 +29,7 @@
 - name *string*  
 - email  *string*  
 - mobile_number *string*  
-- birthday *date*  
-- age *int*  
+- birthday *date* 
 - gender *char*  
 - password *bits
 
