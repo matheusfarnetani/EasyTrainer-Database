@@ -1,0 +1,53 @@
+CREATE DEFINER = CURRENT_USER TRIGGER `easytrainer`.`trg_log_ad_exercise`
+AFTER DELETE ON `exercise` FOR EACH ROW
+BEGIN
+    INSERT INTO `easytrainer_log`.`log_exercise_content` (
+        `log_exercise_main_exercise_id`,
+        `revision`,
+        `status`,
+        `name`,
+        `description`,
+        `equipment`,
+        `duration`,
+        `repetition`,
+        `sets`,
+        `rest_time`,
+        `body_part`,
+        `video_url`,
+        `image_url`,
+        `steps`,
+        `contraindications`,
+        `safety_tips`,
+        `common_mistakes`,
+        `indicated_for`,
+        `calories_burned_estimate`,
+        `instructor_id`,
+        `level_id`,
+        `modified_by`,
+        `modified_at`
+    ) VALUES (
+        OLD.id,
+        (SELECT current_revision FROM `easytrainer_log`.`log_exercise_main` WHERE `exercise_id` = OLD.id) + 1,
+        0,
+        OLD.name,
+        OLD.description,
+        OLD.equipment,
+        OLD.duration,
+        OLD.repetition,
+        OLD.sets,
+        OLD.rest_time,
+        OLD.body_part,
+        OLD.video_url,
+        OLD.image_url,
+        OLD.steps,
+        OLD.contraindications,
+        OLD.safety_tips,
+        OLD.common_mistakes,
+        OLD.indicated_for,
+        OLD.calories_burned_estimate,
+        OLD.instructor_id,
+        OLD.level_id,
+        @user_id,
+        NOW()
+    );
+END;
