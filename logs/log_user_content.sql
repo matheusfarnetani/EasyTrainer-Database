@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS `easytrainer_log`.`log_user_content` (
   `weight` DECIMAL(5,2) NULL,
   `height` DECIMAL(4,2) NULL,
   `gender` ENUM("M", "F", "O") NULL,
-  `password` BINARY(32) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
   `level_id` INT NULL,
   `instructor_id` INT NULL,
   `modified_by` INT NOT NULL,

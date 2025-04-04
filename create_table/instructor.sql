@@ -4,9 +4,8 @@ CREATE TABLE IF NOT EXISTS `easytrainer`.`instructor` (
   `email` VARCHAR(255) NOT NULL,
   `mobile_number` VARCHAR(20) NULL,
   `birthday` DATE NULL,
-  `age` TINYINT NULL,
   `gender` ENUM("M", "F", "O") NULL,
-  `password` BINARY(32) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
 ENGINE = InnoDB

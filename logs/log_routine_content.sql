@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS `easytrainer_log`.`log_routine_content` (
   `revision` INT NOT NULL,
   `status` TINYINT(1) NOT NULL DEFAULT 1,
   `name` VARCHAR(100) NOT NULL,
-  `description` VARCHAR(255) NULL,
+  `description` TEXT NULL,
   `duration` TIME NULL,
   `image_url` VARCHAR(255) NULL,
   `instructor_id` INT NOT NULL,

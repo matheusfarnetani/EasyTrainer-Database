@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS `easytrainer`.`workout` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NOT NULL,
   `description` VARCHAR(255) NULL,
   `number_of_days` TINYINT NULL,

@@ -16,8 +16,8 @@ BEGIN
     );
 
     INSERT INTO `easytrainer_log`.`log_workout_has_type_content` (
-        `log_workout_has_type_workout_id`,
-        `log_workout_has_type_type_id`,
+        `log_workout_has_type_main_workout_id`,
+        `log_workout_has_type_main_type_id`,
         `revision`,
         `status`,
         `modified_by`,

@@ -2,8 +2,8 @@ CREATE DEFINER = CURRENT_USER TRIGGER `easytrainer`.`trg_log_ad_workout_has_type
 AFTER DELETE ON `workout_has_type` FOR EACH ROW
 BEGIN
     INSERT INTO `easytrainer_log`.`log_workout_has_type_content` (
-        `log_workout_has_type_workout_id`,
-        `log_workout_has_type_type_id`,
+        `log_workout_has_type_main_workout_id`,
+        `log_workout_has_type_main_type_id`,
         `revision`,
         `status`,
         `modified_by`,

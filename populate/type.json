@@ -1,0 +1,62 @@
+[
+    {
+        "name": "Cardio",
+        "description": "Exercises that increase heart rate and improve cardiovascular endurance, such as running, cycling, and jumping rope."
+    },
+    {
+        "name": "Strength Training",
+        "description": "Focuses on building muscular strength and power through resistance-based movements like squats, deadlifts, and presses."
+    },
+    {
+        "name": "Flexibility",
+        "description": "Aims to improve the range of motion in muscles and joints through stretching exercises and mobility work."
+    },
+    {
+        "name": "Balance",
+        "description": "Exercises that enhance body stability and coordination, often involving core engagement and single-leg movements."
+    },
+    {
+        "name": "HIIT",
+        "description": "High-Intensity Interval Training that alternates short bursts of intense activity with periods of rest or lower-intensity work."
+    },
+    {
+        "name": "Core",
+        "description": "Targets the abdominal and lower back muscles, improving posture, stability, and overall body control."
+    },
+    {
+        "name": "Bodyweight",
+        "description": "Utilizes the body’s own weight as resistance, including exercises like push-ups, pull-ups, and planks."
+    },
+    {
+        "name": "Plyometrics",
+        "description": "Explosive movements like jumps and bounds to build speed, power, and neuromuscular coordination."
+    },
+    {
+        "name": "Powerlifting",
+        "description": "Training focused on maximal strength in compound lifts such as squat, bench press, and deadlift."
+    },
+    {
+        "name": "Olympic Lifting",
+        "description": "Involves technical lifts like snatches and clean and jerks to build explosive strength and coordination."
+    },
+    {
+        "name": "Aerobics",
+        "description": "Rhythmic, dance-like routines set to music that improve cardiovascular fitness and endurance."
+    },
+    {
+        "name": "Endurance",
+        "description": "Enhances the ability to sustain physical activity over extended periods, often through repetitive low-intensity work."
+    },
+    {
+        "name": "Agility",
+        "description": "Exercises that improve quickness, change of direction, and reaction time, useful in many sports and functional training."
+    },
+    {
+        "name": "Functional Training",
+        "description": "Mimics real-life movements to improve everyday performance, stability, and injury prevention."
+    },
+    {
+        "name": "Stretching",
+        "description": "Dedicated routines that target muscle lengthening, relaxation, and recovery post-exercise or for mobility."
+    }
+]

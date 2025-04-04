@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Lose Weight",
+        "description": "This goal is focused on reducing body fat through a combination of cardiovascular exercises and a calorie-controlled routine."
+    },
+    {
+        "name": "Gain Weight",
+        "description": "Designed for individuals who need to increase their body weight in a healthy way, often with resistance training and increased caloric intake."
+    },
+    {
+        "name": "Muscle Mass Gain",
+        "description": "This goal aims to build and increase lean muscle mass through strength training and proper nutrition."
+    },
+    {
+        "name": "Shape Body",
+        "description": "Focused on toning and defining body muscles, improving overall body aesthetics with balanced training routines."
+    },
+    {
+        "name": "Others",
+        "description": "A customizable goal category for specific fitness objectives not covered by the predefined goals."
+    }
+]

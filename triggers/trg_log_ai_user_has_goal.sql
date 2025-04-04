@@ -16,8 +16,8 @@ BEGIN
     );
 
     INSERT INTO `easytrainer_log`.`log_user_has_goal_content` (
-        `log_user_has_goal_user_id`,
-        `log_user_has_goal_goal_id`,
+        `log_user_has_goal_main_user_id`,
+        `log_user_has_goal_main_goal_id`,
         `revision`,
         `status`,
         `modified_by`,
