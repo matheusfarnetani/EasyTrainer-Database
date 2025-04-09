@@ -12,9 +12,9 @@ It includes:
 
 ## Documentation Files
 
-- [Main Tables](./main_tables.md)  
-- [Relationship Tables](./relationship_tables.md)  
-- [Views](./views.md)  
-- [Logs](./logs.md)  
-- [Security](./security.md)  
-- [Populate](./populate.md)  
+- [Main Tables](./docs/main_tables.md)  
+- [Relationship Tables](./docs/relationship_tables.md)  
+- [Views](./docs/views.md)  
+- [Logs](./docs/logs.md)  
+- [Security](./docs/security.md)  
+- [Populate](./docs/populate.md)  
