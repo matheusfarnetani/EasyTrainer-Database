@@ -626,6 +626,28 @@ CREATE TABLE IF NOT EXISTS `easytrainer`.`workout_has_user` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `easytrainer`.`user_has_instructor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `easytrainer`.`user_has_instructor` (
+  `user_id` INT NOT NULL,
+  `instructor_id` INT NOT NULL,
+  PRIMARY KEY (`user_id`, `instructor_id`),
+  INDEX `fk_user_has_instructor_instructor1_idx` (`instructor_id` ASC) VISIBLE,
+  INDEX `fk_user_has_instructor_user1_idx` (`user_id` ASC) VISIBLE,
+  CONSTRAINT `fk_user_has_instructor_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `easytrainer`.`user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_has_instructor_instructor1`
+    FOREIGN KEY (`instructor_id`)
+    REFERENCES `easytrainer`.`instructor` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 USE `easytrainer_log` ;
 
 -- -----------------------------------------------------
@@ -1620,6 +1642,40 @@ CREATE TABLE IF NOT EXISTS `easytrainer_log`.`log_exercise_has_variation_content
   CONSTRAINT `fk_log_workout_has_type_content_log_workout_has_type_main100060`
     FOREIGN KEY (`log_exercise_has_variation_exercise_id` , `log_exercise_has_variation_variation_id`)
     REFERENCES `easytrainer_log`.`log_exercise_has_variation_main` (`exercise_id` , `variation_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `easytrainer_log`.`log_user_has_instructor_main`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `easytrainer_log`.`log_user_has_instructor_main` (
+  `user_id` INT NOT NULL,
+  `instructor_id` INT NOT NULL,
+  `current_revision` INT NOT NULL DEFAULT 1,
+  `created_by` INT NOT NULL,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`user_id`, `instructor_id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `easytrainer_log`.`log_user_has_instructor_content`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `easytrainer_log`.`log_user_has_instructor_content` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `log_user_has_instructor_main_user_id` INT NOT NULL,
+  `log_user_has_instructor_main_instructor_id` INT NOT NULL,
+  `revision` INT NOT NULL,
+  `status` TINYINT(1) NOT NULL DEFAULT 1,
+  `modified_by` INT NOT NULL,
+  `modified_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  INDEX `fk_log_user_has_instructor_content_log_user_has_instructor__idx` (`log_user_has_instructor_main_user_id` ASC, `log_user_has_instructor_main_instructor_id` ASC) VISIBLE,
+  CONSTRAINT `fk_log_user_has_instructor_content_log_user_has_instructor_ma1`
+    FOREIGN KEY (`log_user_has_instructor_main_user_id` , `log_user_has_instructor_main_instructor_id`)
+    REFERENCES `easytrainer_log`.`log_user_has_instructor_main` (`user_id` , `instructor_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -4162,6 +4218,63 @@ BEGIN
         OLD.user_id,
         (SELECT current_revision FROM `easytrainer_log`.`log_workout_has_user_main`
          WHERE `workout_id` = OLD.workout_id AND `user_id` = OLD.user_id) + 1,
+        0,
+        @user_id,
+        NOW()
+    );
+END;$$
+
+USE `easytrainer`$$
+CREATE DEFINER = CURRENT_USER TRIGGER `easytrainer`.`trg_log_ai_user_has_instructor`
+AFTER INSERT ON `user_has_instructor` FOR EACH ROW
+BEGIN
+    INSERT INTO `easytrainer_log`.`log_user_has_instructor_main` (
+        `user_id`,
+        `instructor_id`,
+        `current_revision`,
+        `created_by`,
+        `created_at`
+    ) VALUES (
+        NEW.user_id,
+        NEW.instructor_id,
+        1,
+        @user_id,
+        NOW()
+    );
+
+    INSERT INTO `easytrainer_log`.`log_user_has_instructor_content` (
+        `log_user_has_instructor_main_user_id`,
+        `log_user_has_instructor_main_instructor_id`,
+        `revision`,
+        `status`,
+        `modified_by`,
+        `modified_at`
+    ) VALUES (
+        NEW.user_id,
+        NEW.instructor_id,
+        1,
+        1,
+        @user_id,
+        NOW()
+    );
+END;$$
+
+USE `easytrainer`$$
+CREATE DEFINER = CURRENT_USER TRIGGER `easytrainer`.`trg_log_ad_user_has_instructor`
+AFTER DELETE ON `user_has_instructor` FOR EACH ROW
+BEGIN
+    INSERT INTO `easytrainer_log`.`log_user_has_instructor_content` (
+        `log_user_has_instructor_main_user_id`,
+        `log_user_has_instructor_main_instructor_id`,
+        `revision`,
+        `status`,
+        `modified_by`,
+        `modified_at`
+    ) VALUES (
+        OLD.user_id,
+        OLD.instructor_id,
+        (SELECT current_revision FROM `easytrainer_log`.`log_user_has_instructor_main`
+         WHERE user_id = OLD.user_id AND instructor_id = OLD.instructor_id) + 1,
         0,
         @user_id,
         NOW()
