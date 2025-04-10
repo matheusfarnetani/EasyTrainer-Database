@@ -18,6 +18,7 @@ INSERT_ORDER = [
     "hashtag.json",
     "instructor.json",
     "user.json",
+    "user_has_instructor.json",
     "exercise.json",
     "routine.json",
     "workout.json",
