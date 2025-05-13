@@ -1,92 +1,92 @@
 [
-    {
-        "name": "#cardio"
-    },
-    {
-        "name": "#strengthTraining"
-    },
-    {
-        "name": "#flexibility"
-    },
-    {
-        "name": "#balanceTraining"
-    },
-    {
-        "name": "#hiit"
-    },
-    {
-        "name": "#coreWorkout"
-    },
-    {
-        "name": "#bodyweightTraining"
-    },
-    {
-        "name": "#plyometrics"
-    },
-    {
-        "name": "#powerlifting"
-    },
-    {
-        "name": "#olympicLifting"
-    },
-    {
-        "name": "#aerobics"
-    },
-    {
-        "name": "#endurance"
-    },
-    {
-        "name": "#agility"
-    },
-    {
-        "name": "#functionalTraining"
-    },
-    {
-        "name": "#stretching"
-    },
-    {
-        "name": "#yoga"
-    },
-    {
-        "name": "#pilates"
-    },
-    {
-        "name": "#crossfit"
-    },
-    {
-        "name": "#calisthenics"
-    },
-    {
-        "name": "#bodybuilding"
-    },
-    {
-        "name": "#functional"
-    },
-    {
-        "name": "#martialArts"
-    },
-    {
-        "name": "#danceFitness"
-    },
-    {
-        "name": "#athleticTraining"
-    },
-    {
-        "name": "#rehabTraining"
-    },
-    {
-        "name": "#strengthConditioning"
-    },
-    {
-        "name": "#waterFitness"
-    },
-    {
-        "name": "#stretchTherapy"
-    },
-    {
-        "name": "#groupTraining"
-    },
-    {
-        "name": "#homeWorkout"
-    }
+  {
+    "name": "#cardio"
+  },
+  {
+    "name": "#strengthTraining"
+  },
+  {
+    "name": "#flexibility"
+  },
+  {
+    "name": "#balanceTraining"
+  },
+  {
+    "name": "#hiit"
+  },
+  {
+    "name": "#coreWorkout"
+  },
+  {
+    "name": "#bodyweightTraining"
+  },
+  {
+    "name": "#plyometrics"
+  },
+  {
+    "name": "#powerlifting"
+  },
+  {
+    "name": "#olympicLifting"
+  },
+  {
+    "name": "#aerobics"
+  },
+  {
+    "name": "#endurance"
+  },
+  {
+    "name": "#agility"
+  },
+  {
+    "name": "#functionalTraining"
+  },
+  {
+    "name": "#stretching"
+  },
+  {
+    "name": "#yoga"
+  },
+  {
+    "name": "#pilates"
+  },
+  {
+    "name": "#crossfit"
+  },
+  {
+    "name": "#calisthenics"
+  },
+  {
+    "name": "#bodybuilding"
+  },
+  {
+    "name": "#functional"
+  },
+  {
+    "name": "#martialArts"
+  },
+  {
+    "name": "#danceFitness"
+  },
+  {
+    "name": "#athleticTraining"
+  },
+  {
+    "name": "#rehabTraining"
+  },
+  {
+    "name": "#strengthConditioning"
+  },
+  {
+    "name": "#waterFitness"
+  },
+  {
+    "name": "#stretchTherapy"
+  },
+  {
+    "name": "#groupTraining"
+  },
+  {
+    "name": "#homeWorkout"
+  }
 ]

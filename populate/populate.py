@@ -4,6 +4,7 @@ import mysql.connector
 
 DB_CONFIG = {
     "host": "localhost",
+    "port": 3306,
     "user": "root",
     "password": "root",
     "database": "easytrainer",
@@ -27,7 +28,6 @@ INSERT_ORDER = [
     "exercise_has_type.json",
     "exercise_has_modality.json",
     "exercise_has_hashtag.json",
-    "exercise_has_variation.json",
     "routine_has_goal.json",
     "routine_has_type.json",
     "routine_has_modality.json",

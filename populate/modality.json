@@ -1,62 +1,62 @@
 [
-    {
-        "name": "Yoga",
-        "description": "A mind-body practice combining physical postures, breathing techniques, and meditation to improve flexibility, strength, and mental focus."
-    },
-    {
-        "name": "Pilates",
-        "description": "A low-impact exercise modality that focuses on core strength, flexibility, and controlled movements."
-    },
-    {
-        "name": "CrossFit",
-        "description": "A high-intensity fitness program incorporating functional movements from multiple disciplines like weightlifting, cardio, and gymnastics."
-    },
-    {
-        "name": "Calisthenics",
-        "description": "A modality based on bodyweight exercises such as push-ups, pull-ups, and dips to build strength and mobility."
-    },
-    {
-        "name": "Bodybuilding",
-        "description": "A training system focused on muscle hypertrophy, symmetry, and definition through resistance training."
-    },
-    {
-        "name": "Functional Training",
-        "description": "Designed to improve everyday movements and athletic performance through dynamic and practical exercises."
-    },
-    {
-        "name": "Martial Arts",
-        "description": "Combines physical conditioning with self-defense techniques, discipline, and coordination through practices like Karate or Taekwondo."
-    },
-    {
-        "name": "Dance Fitness",
-        "description": "A fun, rhythm-based modality such as Zumba or aerobic dance that blends cardiovascular exercise with choreography."
-    },
-    {
-        "name": "Athletic Training",
-        "description": "Focuses on improving sport-specific performance, including speed, agility, and explosive power."
-    },
-    {
-        "name": "Rehabilitation",
-        "description": "Exercise plans aimed at recovering mobility, strength, and function after injury or surgery."
-    },
-    {
-        "name": "Strength & Conditioning",
-        "description": "A performance-focused modality used by athletes to build strength, prevent injury, and enhance physical readiness."
-    },
-    {
-        "name": "Water Fitness",
-        "description": "Exercises performed in water environments to reduce joint impact while improving endurance and muscle tone."
-    },
-    {
-        "name": "Stretch Therapy",
-        "description": "A specialized system to increase muscle flexibility, correct posture, and improve neuromuscular health."
-    },
-    {
-        "name": "Group Training",
-        "description": "Instructor-led sessions in a group setting that foster motivation, accountability, and structured progress."
-    },
-    {
-        "name": "Home Workout",
-        "description": "A flexible modality designed to be performed at home using minimal or no equipment."
-    }
+  {
+    "name": "Yoga",
+    "description": "A mind-body practice combining physical postures, breathing techniques, and meditation to improve flexibility, strength, and mental focus."
+  },
+  {
+    "name": "Pilates",
+    "description": "A low-impact exercise modality that focuses on core strength, flexibility, and controlled movements."
+  },
+  {
+    "name": "CrossFit",
+    "description": "A high-intensity fitness program incorporating functional movements from multiple disciplines like weightlifting, cardio, and gymnastics."
+  },
+  {
+    "name": "Calisthenics",
+    "description": "A modality based on bodyweight exercises such as push-ups, pull-ups, and dips to build strength and mobility."
+  },
+  {
+    "name": "Bodybuilding",
+    "description": "A training system focused on muscle hypertrophy, symmetry, and definition through resistance training."
+  },
+  {
+    "name": "Functional Training",
+    "description": "Designed to improve everyday movements and athletic performance through dynamic and practical exercises."
+  },
+  {
+    "name": "Martial Arts",
+    "description": "Combines physical conditioning with self-defense techniques, discipline, and coordination through practices like Karate or Taekwondo."
+  },
+  {
+    "name": "Dance Fitness",
+    "description": "A fun, rhythm-based modality such as Zumba or aerobic dance that blends cardiovascular exercise with choreography."
+  },
+  {
+    "name": "Athletic Training",
+    "description": "Focuses on improving sport-specific performance, including speed, agility, and explosive power."
+  },
+  {
+    "name": "Rehabilitation",
+    "description": "Exercise plans aimed at recovering mobility, strength, and function after injury or surgery."
+  },
+  {
+    "name": "Strength & Conditioning",
+    "description": "A performance-focused modality used by athletes to build strength, prevent injury, and enhance physical readiness."
+  },
+  {
+    "name": "Water Fitness",
+    "description": "Exercises performed in water environments to reduce joint impact while improving endurance and muscle tone."
+  },
+  {
+    "name": "Stretch Therapy",
+    "description": "A specialized system to increase muscle flexibility, correct posture, and improve neuromuscular health."
+  },
+  {
+    "name": "Group Training",
+    "description": "Instructor-led sessions in a group setting that foster motivation, accountability, and structured progress."
+  },
+  {
+    "name": "Home Workout",
+    "description": "A flexible modality designed to be performed at home using minimal or no equipment."
+  }
 ]

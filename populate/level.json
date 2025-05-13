@@ -1,14 +1,14 @@
 [
-    {
-        "name": "Beginner",
-        "description": "Ideal for individuals who are new to exercising or returning after a long break. Focuses on learning form, building consistency, and improving general fitness."
-    },
-    {
-        "name": "Intermediate",
-        "description": "Designed for users with some experience in training. Emphasizes progression in strength, endurance, and complexity of movements."
-    },
-    {
-        "name": "Advance",
-        "description": "Tailored for experienced individuals seeking to optimize performance. Includes high-intensity, technical, or sport-specific training routines."
-    }
+  {
+    "name": "Beginner",
+    "description": "Ideal for individuals who are new to exercising or returning after a long break. Focuses on learning form, building consistency, and improving general fitness."
+  },
+  {
+    "name": "Intermediate",
+    "description": "Designed for users with some experience in training. Emphasizes progression in strength, endurance, and complexity of movements."
+  },
+  {
+    "name": "Advance",
+    "description": "Tailored for experienced individuals seeking to optimize performance. Includes high-intensity, technical, or sport-specific training routines."
+  }
 ]
