@@ -39,12 +39,10 @@ GRANT SELECT, INSERT, UPDATE ON easytrainer.* TO 'easytrainer_instructor'@'local
 
 -- Conceder privilégios ao usuário final:
 GRANT SELECT ON easytrainer.* TO 'easytrainer_user'@'%';
-GRANT UPDATE(name, mobile_number, weight, height, password)
-  ON easytrainer.user TO 'easytrainer_user'@'%';
+GRANT UPDATE ON easytrainer.user TO 'easytrainer_user'@'%';
 
 GRANT SELECT ON easytrainer.* TO 'easytrainer_user'@'localhost';
-GRANT UPDATE(name, mobile_number, weight, height, password)
-  ON easytrainer.user TO 'easytrainer_user'@'localhost';
+GRANT UPDATE ON easytrainer.user TO 'easytrainer_user'@'localhost';
 
 -- Aplicar todas as permissões
 FLUSH PRIVILEGES;
@@ -60,3 +58,4 @@ SHOW GRANTS FOR 'easytrainer_user'@'localhost';
 
 
 SELECT user, host, plugin FROM mysql.user WHERE user = 'easytrainer_admin';
+
