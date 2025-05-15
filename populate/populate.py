@@ -1,14 +1,17 @@
 import os
 import json
 import mysql.connector
+from dotenv import load_dotenv
+
+load_dotenv()
 
 DB_CONFIG = {
-    "host": "localhost",
-    "port": 3306,
-    "user": "root",
-    "password": "root",
-    "database": "easytrainer",
-    "auth_plugin": "mysql_native_password",
+    "host": os.getenv("DB_HOST"),
+    "port": int(os.getenv("DB_PORT", 3306)),
+    "user": os.getenv("DB_USER"),
+    "password": os.getenv("DB_PASSWORD"),
+    "database": os.getenv("DB_NAME"),
+    "auth_plugin": os.getenv("DB_AUTH_PLUGIN", "mysql_native_password")
 }
 
 INSERT_ORDER = [
