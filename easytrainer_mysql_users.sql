@@ -33,16 +33,30 @@ GRANT ALL PRIVILEGES ON easytrainer.* TO 'easytrainer_admin'@'localhost';
 GRANT SELECT ON easytrainer_log.* TO 'easytrainer_admin'@'localhost';
 
 -- Conceder privilégios ao instrutor (acesso completo a dados, mas sem alterar estrutura)
-GRANT SELECT, INSERT, UPDATE ON easytrainer.* TO 'easytrainer_instructor'@'%';
+GRANT SELECT, INSERT, UPDATE, DELETE ON easytrainer.* TO 'easytrainer_instructor'@'%';
 
-GRANT SELECT, INSERT, UPDATE ON easytrainer.* TO 'easytrainer_instructor'@'localhost';
+GRANT SELECT, INSERT, UPDATE, DELETE ON easytrainer.* TO 'easytrainer_instructor'@'localhost';
 
 -- Conceder privilégios ao usuário final:
 GRANT SELECT ON easytrainer.* TO 'easytrainer_user'@'%';
 GRANT UPDATE ON easytrainer.user TO 'easytrainer_user'@'%';
+GRANT DELETE ON easytrainer.user TO 'easytrainer_user'@'%';
+GRANT UPDATE ON easytrainer.user_has_goal TO 'easytrainer_user'@'%';
+GRANT DELETE ON easytrainer.user_has_goal TO 'easytrainer_user'@'%';
+GRANT UPDATE ON easytrainer.user_has_instructor TO 'easytrainer_user'@'%';
+GRANT DELETE ON easytrainer.user_has_instructor TO 'easytrainer_user'@'%';
+GRANT UPDATE ON easytrainer.workout_has_user TO 'easytrainer_user'@'%';
+GRANT DELETE ON easytrainer.workout_has_user TO 'easytrainer_user'@'%';
 
 GRANT SELECT ON easytrainer.* TO 'easytrainer_user'@'localhost';
 GRANT UPDATE ON easytrainer.user TO 'easytrainer_user'@'localhost';
+GRANT DELETE ON easytrainer.user TO 'easytrainer_user'@'localhost';
+GRANT UPDATE ON easytrainer.user_has_goal TO 'easytrainer_user'@'localhost';
+GRANT DELETE ON easytrainer.user_has_goal TO 'easytrainer_user'@'localhost';
+GRANT UPDATE ON easytrainer.user_has_instructor TO 'easytrainer_user'@'localhost';
+GRANT DELETE ON easytrainer.user_has_instructor TO 'easytrainer_user'@'localhost';
+GRANT UPDATE ON easytrainer.workout_has_user TO 'easytrainer_user'@'localhost';
+GRANT DELETE ON easytrainer.workout_has_user TO 'easytrainer_user'@'localhost';
 
 -- Aplicar todas as permissões
 FLUSH PRIVILEGES;
