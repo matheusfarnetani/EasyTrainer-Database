@@ -8,8 +8,8 @@ This repository documents the structured MySQL database for the **EasyTrainer** 
 - Designed for data integrity and extensibility in both educational and production settings
 
 ## Documentation Structure
-- [Main Tables](./docs/main_table.md)
-- [Relationship Tables](./docs/relationship_tables.md)
+- [Main Tables](./docs/main_tables.md)
+- [Relationship Tables](./docs/relationship_tabless.md)
 - [Views](./docs/views.md)
 - [Logs](./docs/logs.md)
 - [Security & User Roles](./docs/security.md)
