@@ -1,22 +1,26 @@
 # Main Tables
 ## user
 ### Properties
-- name *string*  
-- email *string*  
-- mobile_number *string*  
-- birthday *date*  
-- weight *float*  
-- height *float*  
-- gender *char*  
-- password *string*
-- level_id *int*
-- instructor_id *int*
+| Field         | Type     | Description                           |
+| ------------- | -------- | ------------------------------------- |
+| id            | int (PK) | User ID                               |
+| name          | string   | User's name                           |
+| email         | string   | User's email                          |
+| mobile_number | string   | User's mobile number                  |
+| birthday      | date     | Birthday                              |
+| weight        | float    | Weight                                |
+| height        | float    | Height                                |
+| gender        | char     | Gender (M/F/Other)                    |
+| password      | string   | Hashed password                       |
+| level_id      | int (FK) | Level ID (FK to `level.id`)           |
+| instructor_id | int (FK) | Instructor ID (FK to `instructor.id`) |
 
 ### Relationships
-- user (n) -> goal (n)
-- user (1) -> level (n)
-- user (1) -> instructor (n)
-- user (n) -> workout (n)
+- `user.level_id` → FK to `level.id`
+- `user.instructor_id` → FK to `instructor.id`
+- **Many-to-many:** user ↔ goal (user_has_goal)
+- **Many-to-many:** user ↔ workout (workout_has_user)
+- **Many-to-many:** user ↔ instructor (user_has_instructor)
 
 ### Triggers
 - trg_log_ai_user *after input*
@@ -26,18 +30,21 @@
 ---
 ## instructor
 ### Properties
-- name *string*  
-- email  *string*  
-- mobile_number *string*  
-- birthday *date*  
-- gender *char*  
-- password *string*
+| Field         | Type     | Description     |
+| ------------- | -------- | --------------- |
+| id            | int (PK) | Instructor ID   |
+| name          | string   | Name            |
+| email         | string   | Email           |
+| mobile_number | string   | Mobile number   |
+| birthday      | date     | Birthday        |
+| gender        | char     | Gender          |
+| password      | string   | Hashed password |
 
 ### Relationships
-- instructor (n) -> user (1)
-- instructor (n) -> workout (1)
-- instructor (n) -> routine (1)
-- instructor (n) -> exercise (1)
+- **Many-to-many:** instructor ↔ user (user_has_instructor)
+- **One-to-many:** instructor → workout (`workout.instructor_id`)
+- **One-to-many:** instructor → routine (`routine.instructor_id)
+- **One-to-many:** instructor → exercise (`exercise.instructor_id`)
 
 ### Triggers
 - trg_log_ai_instructor *after input*
@@ -47,14 +54,17 @@
 ---
 ## goal
 ### Properties
-- name *string*  
-- description *string*
+| Field       | Type     | Description |
+| ----------- | -------- | ----------- |
+| id          | int (PK) | Goal ID     |
+| name        | string   | Name        |
+| description | string   | Description |
 
 ### Relationships
-- goal (n) -> user (n)
-- goal (n) -> workout (n)
-- goal (n) -> routine (n)
-- goal (n) -> exercise (n)
+- **Many-to-many:** goal ↔ user (user_has_goal)
+- **Many-to-many:** goal ↔ workout (workout_has_goal)
+- **Many-to-many:** goal ↔ routine (routine_has_goal)
+- **Many-to-many:** goal ↔ exercise (exercise_has_goal)
 
 ### Triggers
 - trg_log_ai_goal *after input*
@@ -64,14 +74,17 @@
 ---
 ## level
 ### Properties
-- name *string*  
-- description *string*
+| Field       | Type     | Description |
+| ----------- | -------- | ----------- |
+| id          | int (PK) | Level ID    |
+| name        | string   | Name        |
+| description | string   | Description |
 
 ### Relationships
-- level (n) -> user (1)
-- level (n) -> workout (1)
-- level (n) -> routine (1)
-- level (n) -> exercise (1)
+- **One-to-many:** level → user (`user.level_id`)
+- **One-to-many:** level → workout (`workout.level_id`)
+- **One-to-many:** level → routine (`routine.level_id`)
+- **One-to-many:** level → exercise (`exercise.level_id`)
 
 ### Triggers
 - trg_log_ai_level *after input*
@@ -81,13 +94,16 @@
 ---
 ## type
 ### Properties
-- name *string*  
-- description *string*
+| Field       | Type     | Description |
+| ----------- | -------- | ----------- |
+| id          | int (PK) | Type ID     |
+| name        | string   | Name        |
+| description | string   | Description |
 
 ### Relationships
-- type (n) -> workout (n)
-- type (n) -> routine (n)
-- type (n) -> exercises (n)
+- **Many-to-many:** type ↔ workout (workout_has_type)
+- **Many-to-many:** type ↔ routine (routine_has_type)
+- **Many-to-many:** type ↔ exercise (exercise_has_type)
 
 ### Triggers
 - trg_log_ai_type *after input*
@@ -97,13 +113,16 @@
 ---
 ## modality
 ### Properties
-- name *string*  
-- description *string*
+| Field       | Type     | Description |
+| ----------- | -------- | ----------- |
+| id          | int (PK) | Modality ID |
+| name        | string   | Name        |
+| description | string   | Description |
 
 ### Relationships
-- modality (n) -> workout (n)
-- modality (n) -> routine (n)
-- modality (n) -> exercises (n)
+- **Many-to-many:** modality ↔ workout (workout_has_modality)
+- **Many-to-many:** modality ↔ routine (routine_has_modality)
+- **Many-to-many:** modality ↔ exercise (exercise_has_modality)
 
 ### Triggers
 - trg_log_ai_modality *after input*
@@ -113,12 +132,15 @@
 ---
 ## hashtag
 ### Properties
-- hashtag *string*
+| Field   | Type     | Description   |
+| ------- | -------- | ------------- |
+| id      | int (PK) | Hashtag ID    |
+| hashtag | string   | Hashtag value |
 
 ### Relationships
-- hashtag (n) -> workout (n)
-- hashtag (n) -> routine (n)
-- hashtag (n) -> exercises (n)
+- **Many-to-many:** hashtag ↔ workout (workout_has_hashtag)
+- **Many-to-many:** hashtag ↔ routine (routine_has_hashtag)
+- **Many-to-many:** hashtag ↔ exercise (exercise_has_hashtag)
 
 ### Triggers
 - trg_log_ai_hashtag *after input*
@@ -128,25 +150,28 @@
 ---
 ## workout 
 ### Properties
-- name *string*  
-- description *string*  
-- number_of_days *int*  
-- image_url *string*  
-- duration *time*  
-- indoor *bool*
-- instructor_id *int*
-- level_id *int*
+| Field          | Type     | Description                     |
+| -------------- | -------- | ------------------------------- |
+| id             | int (PK) | Workout ID                      |
+| name           | string   | Name                            |
+| description    | string   | Description                     |
+| number_of_days | int      | Number of days                  |
+| image_url      | string   | Image URL                       |
+| duration       | time     | Duration                        |
+| indoor         | bool     | Indoor (true/false)             |
+| instructor_id  | int (FK) | Instructor ID (`instructor.id`) |
+| level_id       | int (FK) | Level ID (`level.id`)           |
 
 ### Relationships
-- workout (n) -> user (n)
-- workout (1) -> instructor (n)
-- workout (n) -> goal (n)
-- workout (1) -> level (n)
-- workout (n) -> type (n)
-- workout (n) -> modality (n)
-- workout (n) -> hashtag (n)
-- workout (n) -> routine (n)
-- workout (n) -> exercise (n)
+- `workout.instructor_id` → FK to `instructor.id`
+- `workout.level_id` → FK to `level.id`
+- **Many-to-many:** workout ↔ user (workout_has_user)
+- **Many-to-many:** workout ↔ goal (workout_has_goal)
+- **Many-to-many:** workout ↔ type (workout_has_type)
+- **Many-to-many:** workout ↔ modality (workout_has_modality)
+- **Many-to-many:** workout ↔ hashtag (workout_has_hashtag)
+- **Many-to-many:** workout ↔ routine (workout_has_routine)
+- **Many-to-many:** workout ↔ exercise (workout_has_exercise)
 
 ### Triggers
 - trg_log_ai_workout *after input*
@@ -156,22 +181,25 @@
 ---
 ## routine
 ### Properties
-- name *string*  
-- description *string*  
-- duration *time*  
-- image_url *string*
-- instructor_id *int*
-- level_id *int*
+| Field         | Type     | Description                     |
+| ------------- | -------- | ------------------------------- |
+| id            | int (PK) | Routine ID                      |
+| name          | string   | Name                            |
+| description   | string   | Description                     |
+| duration      | time     | Duration                        |
+| image_url     | string   | Image URL                       |
+| instructor_id | int (FK) | Instructor ID (`instructor.id`) |
+| level_id      | int (FK) | Level ID (`level.id`)           |
 
 ### Relationships
-- routine (1) -> instructor (n)
-- routine (n) -> goal (n)
-- routine (1) -> level (n)
-- routine (n) -> type (n)
-- routine (n) -> modality (n)
-- routine (n) -> hashtag (n)
-- routine (n) -> workout (n)
-- routine (n) -> exercise (n)
+- `routine.instructor_id` → FK to `instructor.id`
+- `routine.level_id` → FK to `level.id`
+- **Many-to-many:** routine ↔ goal (routine_has_goal)
+- **Many-to-many:** routine ↔ type (routine_has_type)
+- **Many-to-many:** routine ↔ modality (routine_has_modality)
+- **Many-to-many:** routine ↔ hashtag (routine_has_hashtag)
+- **Many-to-many:** routine ↔ workout (workout_has_routine)
+- **Many-to-many:** routine ↔ exercise (routine_has_exercise)
 
 ### Triggers
 - trg_log_ai_routine *after input*
@@ -181,37 +209,63 @@
 ---
 ## exercise
 ### Properties
-- name *string*  
-- description *string*  
-- equipment *string*  
-- duration *time*  
-- repetition *int*  
-- sets *int*  
-- rest_time *time*  
-- body_part *string*  
-- video_url *string*  
-- image_url *string*  
-- steps (instructions) *string*  
-- contraindications *string*  
-- safety_tips *string*  
-- common_mistakes *string*  
-- indicated_for *string*  
-- calories_burned_estimate *float*
-- instructor_id *int*
-- level_id *int*
+| Field                    | Type     | Description                     |
+| ------------------------ | -------- | ------------------------------- |
+| id                       | int (PK) | Exercise ID                     |
+| name                     | string   | Name                            |
+| description              | string   | Description                     |
+| equipment                | string   | Equipment                       |
+| duration                 | time     | Duration                        |
+| repetition               | int      | Repetition count                |
+| sets                     | int      | Number of sets                  |
+| rest_time                | time     | Rest time                       |
+| body_part                | string   | Main body part                  |
+| video_url                | string   | Video URL                       |
+| image_url                | string   | Image URL                       |
+| steps                    | string   | Instructions                    |
+| contraindications        | string   | Contraindications               |
+| safety_tips              | string   | Safety tips                     |
+| common_mistakes          | string   | Common mistakes                 |
+| indicated_for            | string   | Indicated for                   |
+| calories_burned_estimate | float    | Calories burned (estimated)     |
+| instructor_id            | int (FK) | Instructor ID (`instructor.id`) |
+| level_id                 | int (FK) | Level ID (`level.id`)           |
 
 ### Relationships
-- exercise (1) -> instructor (n)
-- exercise (n) -> goal (n)
-- exercise (1) -> level (n)
-- exercise (n) -> type (n)
-- exercise (n) -> modality (n)
-- exercise (n) -> hashtag (n)
-- exercise (n) -> workout (n)
-- exercise (n) -> routine (n)
-- exercise (n) -> exercise (n) (variation)
+- `exercise.instructor_id` → FK to `instructor.id`
+- `exercise.level_id` → FK to `level.id`
+- **Many-to-many:** exercise ↔ goal (exercise_has_goal)
+- **Many-to-many:** exercise ↔ type (exercise_has_type)
+- **Many-to-many:** exercise ↔ modality (exercise_has_modality)
+- **Many-to-many:** exercise ↔ hashtag (exercise_has_hashtag)
+- **Many-to-many:** exercise ↔ workout (workout_has_exercise)
+- **Many-to-many:** exercise ↔ routine (routine_has_exercise)
+- **Many-to-many (self):** exercise ↔ exercise (exercise_has_variation)
 
 ### Triggers
 - trg_log_ai_exercise *after input*
 - trg_log_au_exercise *after updated*
 - trg_log_ad_exercise *after delete*
+
+---
+## `user_videos`
+### Properties
+
+| Field         | Type     | Description                                           |
+| ------------- | -------- | ----------------------------------------------------- |
+| id            | int (PK) | Video ID                                              |
+| user_id       | int (FK) | User ID (linked to `user`)                            |
+| filename      | string   | Original file name                                    |
+| file_url      | string   | File URL in Cloudinary                                |
+| status        | int      | 0 = pending, 1 = processing, 2 = processed, 3 = error |
+| uploaded_at   | datetime | Upload date                                           |
+| processed_at  | datetime | Processing date                                       |
+| error_message | string   | Error message, if any                                 |
+
+### Relationships
+- `user_videos.user_id` → FK to `user.id`
+
+### Triggers
+- trg_log_ai_user_videos *after input*
+- trg_log_au_user_videos *after updated*
+- trg_log_ad_user_videos *after delete*

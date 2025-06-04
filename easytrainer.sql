@@ -648,6 +648,29 @@ CREATE TABLE IF NOT EXISTS `easytrainer`.`user_has_instructor` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `easytrainer`.`user_videos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `easytrainer`.`user_videos` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `filename` VARCHAR(255) NOT NULL,
+  `file_url` VARCHAR(512) NOT NULL,
+  `status` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '0 = pendente, 1 = processando, 2 = processado, 3 = erro',
+  `uploaded_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `processed_at` DATETIME NULL,
+  `error_message` TEXT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_user_videos_user1_idx` (`user_id` ASC) INVISIBLE,
+  INDEX `idx_status` (`status` ASC) VISIBLE,
+  CONSTRAINT `fk_user_videos_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `easytrainer`.`user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 USE `easytrainer_log` ;
 
 -- -----------------------------------------------------
@@ -1676,6 +1699,44 @@ CREATE TABLE IF NOT EXISTS `easytrainer_log`.`log_user_has_instructor_content` (
   CONSTRAINT `fk_log_user_has_instructor_content_log_user_has_instructor_ma1`
     FOREIGN KEY (`log_user_has_instructor_main_user_id` , `log_user_has_instructor_main_instructor_id`)
     REFERENCES `easytrainer_log`.`log_user_has_instructor_main` (`user_id` , `instructor_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `easytrainer_log`.`log_user_videos_main`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `easytrainer_log`.`log_user_videos_main` (
+  `user_videos_id` INT NOT NULL AUTO_INCREMENT,
+  `current_revision` INT NOT NULL DEFAULT 1,
+  `created_by` INT NOT NULL,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`user_videos_id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `easytrainer_log`.`log_user_videos_content`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `easytrainer_log`.`log_user_videos_content` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `log_user_videos_main_user_videos_id` INT NOT NULL,
+  `revision` VARCHAR(45) NOT NULL,
+  `status` TINYINT(1) NOT NULL COMMENT '0 = Deleted, 1 = Active',
+  `filename` VARCHAR(255) NOT NULL,
+  `file_url` VARCHAR(512) NOT NULL,
+  `status_video` TINYINT(1) NOT NULL DEFAULT 0,
+  `uploaded_at` DATETIME NOT NULL,
+  `processed_at` DATETIME NULL,
+  `error_message` TEXT NULL,
+  `modified_by` INT NOT NULL,
+  `modified_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  INDEX `fk_log_user_videos_content_log_user_videos_main1_idx` (`log_user_videos_main_user_videos_id` ASC) VISIBLE,
+  CONSTRAINT `fk_log_user_videos_content_log_user_videos_main1`
+    FOREIGN KEY (`log_user_videos_main_user_videos_id`)
+    REFERENCES `easytrainer_log`.`log_user_videos_main` (`user_videos_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -4276,6 +4337,123 @@ BEGIN
         (SELECT current_revision FROM `easytrainer_log`.`log_user_has_instructor_main`
          WHERE user_id = OLD.user_id AND instructor_id = OLD.instructor_id) + 1,
         0,
+        @user_id,
+        NOW()
+    );
+END;$$
+
+USE `easytrainer`$$
+CREATE DEFINER = CURRENT_USER TRIGGER `easytrainer`.`trg_log_ai_user_videos`
+AFTER INSERT ON `user_videos` FOR EACH ROW
+BEGIN
+    INSERT INTO `easytrainer_log`.`log_user_videos_main` (
+        `user_videos_id`,
+        `current_revision`,
+        `created_by`,
+        `created_at`
+    ) VALUES (
+        NEW.id,
+        1,
+        @user_id,
+        NOW()
+    );
+
+    INSERT INTO `easytrainer_log`.`log_user_videos_content` (
+        `log_user_videos_main_user_videos_id`,
+        `revision`,
+        `status`,
+        `filename`,
+        `file_url`,
+        `status_video`,
+        `uploaded_at`,
+        `processed_at`,
+        `error_message`,
+        `modified_by`,
+        `modified_at`
+    ) VALUES (
+        NEW.id,
+        1,
+        1,
+        NEW.filename,
+        NEW.file_url,
+        NEW.status,
+        NEW.uploaded_at,
+        NEW.processed_at,
+        NEW.error_message,
+        @user_id,
+        NOW()
+    );
+END;$$
+
+USE `easytrainer`$$
+CREATE DEFINER = CURRENT_USER TRIGGER `easytrainer`.`trg_log_au_user_videos`
+AFTER UPDATE ON `user_videos` FOR EACH ROW
+BEGIN
+    DECLARE new_revision INT;
+
+    SET new_revision = (
+        SELECT current_revision 
+        FROM `easytrainer_log`.`log_user_videos_main` 
+        WHERE `user_videos_id` = OLD.id
+    ) + 1;
+
+    UPDATE `easytrainer_log`.`log_user_videos_main`
+    SET `current_revision` = new_revision
+    WHERE `user_videos_id` = OLD.id;
+
+    INSERT INTO `easytrainer_log`.`log_user_videos_content` (
+        `log_user_videos_main_user_videos_id`,
+        `revision`,
+        `status`,
+        `filename`,
+        `file_url`,
+        `status_video`,
+        `uploaded_at`,
+        `processed_at`,
+        `error_message`,
+        `modified_by`,
+        `modified_at`
+    ) VALUES (
+        NEW.id,
+        new_revision,
+        1,
+        NEW.filename,
+        NEW.file_url,
+        NEW.status,
+        NEW.uploaded_at,
+        NEW.processed_at,
+        NEW.error_message,
+        @user_id,
+        NOW()
+    );
+END;$$
+
+USE `easytrainer`$$
+CREATE DEFINER = CURRENT_USER TRIGGER `easytrainer`.`trg_log_ad_user_videos`
+AFTER DELETE ON `user_videos` FOR EACH ROW
+BEGIN
+    INSERT INTO `easytrainer_log`.`log_user_videos_content` (
+        `log_user_videos_main_user_videos_id`,
+        `revision`,
+        `status`,
+        `filename`,
+        `file_url`,
+        `status_video`,
+        `uploaded_at`,
+        `processed_at`,
+        `error_message`,
+        `modified_by`,
+        `modified_at`
+    ) VALUES (
+        OLD.id,
+        (SELECT current_revision FROM `easytrainer_log`.`log_user_videos_main` WHERE `user_videos_id` = OLD.id) + 1,
+        0,
+        OLD.filename,
+        OLD.file_url,
+        OLD.status,
+        OLD.uploaded_at,
+        OLD.processed_at,
+        OLD.error_message,
         @user_id,
         NOW()
     );
